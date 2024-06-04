@@ -6,11 +6,23 @@ public class User {
     String id;
 
 
-    int pfp;
-    public User(String name, String number, String id) {
+
+    String pfp;
+
+
+    public User(String name, String number, String id, String pfp) {
         this.name = name;
         this.number = number;
         this.id = id;
+        this.pfp = pfp;
+    }
+
+    public String getPfp() {
+        return pfp;
+    }
+
+    public void setPfp(String pfp) {
+        this.pfp = pfp;
     }
 
     public String getName() {
