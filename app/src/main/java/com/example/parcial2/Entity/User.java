@@ -1,12 +1,9 @@
-package com.example.parcial2.Entidades;
+package com.example.parcial2.Entity;
 
 public class User {
     String name;
     String number;
     String id;
-
-
-
     String pfp;
 
 

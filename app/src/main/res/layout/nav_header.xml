@@ -18,7 +18,8 @@
             android:src="@drawable/person_icon"
             android:layout_marginStart="10dp"
             android:layout_centerVertical="true"
-            android:id="@+id/MainPfp" />
+            android:id="@+id/MainPfp"
+            />
 
         <TextView
             android:layout_width="wrap_content"
@@ -28,9 +29,9 @@
             android:id="@+id/TvCurrUser"
             android:textSize="22sp"
             android:textStyle="bold"
-            android:textColor="@android:color/white"
+            android:textColor="@color/white"
             android:layout_marginStart="10dp"
-            android:layout_centerVertical="true" />
+            android:layout_centerVertical="true"/>
 
         <ImageButton
             android:id="@+id/PfBtn"
@@ -42,24 +43,21 @@
             android:background="@android:color/transparent"
             android:src="@drawable/icon_send"
             tools:ignore="SpeakableTextPresentCheck" />
+
     </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/ChatsRecyclerView"
-        android:layout_below="@id/main_toolbar" />
+        android:layout_below="@id/main_toolbar"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/addChatBtn"
+        android:id="@+id/floatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="16dp"
         android:clickable="true"
-        android:contentDescription="add_chat"
-        app:srcCompat="@android:drawable/ic_input_add"/>
+        app:srcCompat="@android:drawable/ic_input_add" />
+
 
 </RelativeLayout>
-
