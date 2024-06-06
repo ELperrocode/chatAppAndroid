@@ -1,6 +1,7 @@
 package com.example.parcial2.Activitys;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.EditText;
@@ -18,16 +19,18 @@ import com.example.parcial2.Entity.Chat;
 import com.example.parcial2.R;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ChatActivity extends AppCompatActivity {
-    List<Chat> chats = new ArrayList<>();
-    String currentUserId, receiverId, receiverNumber, receiverName, receiverPfp;
     private RecyclerView recyclerViewChats;
-    private ChatRoomAdapter chatRoomAdapter;
+    private ChatRoomAdapter chatRecyclerAdapter;
+    private EditText chatInput;
+    private String currentUserId, receiverId, receiverName, receiverPfp;
+    private List<Chat> chats = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,27 +40,27 @@ public class ChatActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         receiverId = bundle.getString("id");
         receiverName = bundle.getString("name");
-        receiverNumber = bundle.getString("number");
         receiverPfp = bundle.getString("pfp");
         currentUserId = getCurrentUserId();
 
         InitializeControls();
         loadUserProfile();
+        setupRecyclerView();
         FileToList();
     }
 
     public String getCurrentUserId() {
         SharedPreferences preferences = getSharedPreferences("currentUser", MODE_PRIVATE);
-        return preferences.getString("currentUser", null);
+        return preferences.getString("currentUserId", null);
     }
 
     public void InitializeControls() {
-        recyclerViewChats = findViewById(R.id.ChatroomRecyclerView);
-        recyclerViewChats.setLayoutManager(new LinearLayoutManager(this));
-        chatRoomAdapter = new ChatRoomAdapter(chats, this, currentUserId);
-        recyclerViewChats.setAdapter(chatRoomAdapter);
+        recyclerViewChats = findViewById(R.id.recyclerViewChats);
+        chatInput = findViewById(R.id.chat_input);
 
         findViewById(R.id.btnSend).setOnClickListener(v -> sendMessage());
+        findViewById(R.id.btnBack).setOnClickListener(v -> {sendResult();
+        });
     }
 
     private void loadUserProfile() {
@@ -68,14 +71,26 @@ public class ChatActivity extends AppCompatActivity {
         Glide.with(this).load(receiverPfp).into(chatPfp);
     }
 
+    private void setupRecyclerView() {
+        chatRecyclerAdapter = new ChatRoomAdapter(chats, this, currentUserId);
+        recyclerViewChats.setLayoutManager(new LinearLayoutManager(this));
+        recyclerViewChats.setAdapter(chatRecyclerAdapter);
+    }
+
     public void FileToList() {
         try {
+            File chatFile = new File(getFilesDir(), getChatFileName());
+            if (!chatFile.exists()) {
+                chatFile.createNewFile();
+            }
+
             BufferedReader bf = new BufferedReader(
                     new InputStreamReader(
-                            openFileInput("chats.txt")
+                            openFileInput(getChatFileName())
                     )
             );
             String rawData;
+            chats.clear(); // Limpiar la lista de chats antes de cargar los nuevos datos
             while ((rawData = bf.readLine()) != null) {
                 String[] splitData = rawData.split("~");
 
@@ -88,15 +103,15 @@ public class ChatActivity extends AppCompatActivity {
                         String timestamp = fields[3];
 
                         // Filtrar mensajes que pertenecen a la conversación entre currentUser y receiverId
-                        if ((senderId.equals(currentUserId) && receiverId.equals(this.receiverId)) ||
-                                (senderId.equals(this.receiverId) && receiverId.equals(currentUserId))) {
-                            chats.add(new Chat(message, senderId, receiverId, timestamp));
+                        if ((senderId.equals("1") && receiverId.equals(this.receiverId)) ||
+                                (senderId.equals("2") && receiverId.equals(receiverId))) {
+                            chats.add(new Chat(message, senderId, receiverId, timestamp, receiverPfp));
                         }
                     }
                 }
             }
             bf.close();
-            chatRoomAdapter.notifyDataSetChanged();
+            chatRecyclerAdapter.notifyDataSetChanged();
         } catch (Exception e) {
             Toast.makeText(this, "Error al obtener chats: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
@@ -104,7 +119,7 @@ public class ChatActivity extends AppCompatActivity {
 
     public void saveMessageToFile(String message, String senderId, String receiverId, String timestamp) {
         try {
-            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(openFileOutput("chats.txt", Context.MODE_APPEND));
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(openFileOutput(getChatFileName(), Context.MODE_APPEND));
             String data = message + "|" + senderId + "|" + receiverId + "|" + timestamp + "~";
             outputStreamWriter.write(data);
             outputStreamWriter.close();
@@ -114,15 +129,36 @@ public class ChatActivity extends AppCompatActivity {
     }
 
     public void sendMessage() {
-        EditText chatInput = findViewById(R.id.chat_input);
         String message = chatInput.getText().toString().trim();
         if (!message.isEmpty()) {
             String timestamp = String.valueOf(System.currentTimeMillis());
             saveMessageToFile(message, currentUserId, receiverId, timestamp);
             chatInput.setText("");
-            // Optionally, update the RecyclerView with the new message
-            chats.add(new Chat(message, currentUserId, receiverId, timestamp));
-            chatRoomAdapter.notifyDataSetChanged();
+            // Actualizar la RecyclerView con el nuevo mensaje
+            chats.add(new Chat(message, currentUserId, receiverId, timestamp, receiverPfp));
+            chatRecyclerAdapter.notifyDataSetChanged();
+            recyclerViewChats.scrollToPosition(chatRecyclerAdapter.getItemCount() - 1);
         }
     }
+
+    private String getChatFileName() {
+        return "chat_" + receiverId + ".txt"; // Archivo predefinido para la conversación con el usuario quemado
+    }
+
+    public void sendResult() {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("lastMessage", getLastMessage());
+        intent.putExtra("receiverId", receiverId);
+        intent.putExtra("receiverName", receiverName);
+        intent.putExtra("receiverPfp", receiverPfp);
+        startActivity(intent);
+    }
+
+    public String getLastMessage() {
+        if (!chats.isEmpty()) {
+            return chats.get(chats.size() - 1).getMessage();
+        }
+        return "";
+    }
 }
+

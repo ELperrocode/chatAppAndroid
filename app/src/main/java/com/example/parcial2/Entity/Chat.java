@@ -1,18 +1,35 @@
 package com.example.parcial2.Entity;
 
-import java.time.Instant;
-
 public class Chat {
-    String message;
-    String SenderID;
-    String ReceiverID;
-    String timestamp;
+    private String message;
+    private String senderID;
+    private String receiverID;
+    private String timestamp;
+    private String receiverName;
+    private String receiverPfp;
 
-    public Chat(String message, String sender, String receiver, String timestamp) {
+    public Chat(String message, String senderID, String receiverID, String timestamp, String receiverName, String receiverPfp) {
         this.message = message;
-        this.SenderID = sender;
-        this.ReceiverID = receiver;
+        this.senderID = senderID;
+        this.receiverID = receiverID;
         this.timestamp = timestamp;
+        this.receiverName = receiverName;
+        this.receiverPfp = receiverPfp;
+    }
+
+    public Chat(String message, String senderID, String receiverID, String timestamp) {
+        this.message = message;
+        this.senderID = senderID;
+        this.receiverID = receiverID;
+        this.timestamp = timestamp;
+    }
+
+    public Chat(String lastMessage, String currentUserId, String receiverId, String receiverName, String receiverPfp) {
+        this.message = lastMessage;
+        this.senderID = currentUserId;
+        this.receiverID = receiverId;
+        this.receiverName = receiverName;
+        this.receiverPfp = receiverPfp;
     }
 
     public String getMessage() {
@@ -24,26 +41,43 @@ public class Chat {
     }
 
     public String getSenderID() {
-        return SenderID;
+        return senderID;
     }
 
     public void setSenderID(String senderID) {
-        this.SenderID = senderID;
+        this.senderID = senderID;
+    }
+
+    public String getReceiverID() {
+        return receiverID;
+    }
+
+    public void setReceiverID(String receiverID) {
+        this.receiverID = receiverID;
     }
 
     public String getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(Instant timestamp) {
-        this.timestamp = String.valueOf(timestamp);
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
     }
 
-    public String getReceiverID() {
-        return ReceiverID;
+    public String getReceiverName() {
+        return receiverName;
     }
 
-    public void setReceiverID(String receiverID) {
-        ReceiverID = receiverID;
+    public void setReceiverName(String receiverName) {
+        this.receiverName = receiverName;
+    }
+
+    public String getReceiverPfp() {
+        return receiverPfp;
+    }
+
+    public void setReceiverPfp(String receiverPfp) {
+        this.receiverPfp = receiverPfp;
     }
 }
+
