@@ -1,29 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="20dp"
     android:gravity="center"
     android:orientation="vertical"
+    android:background="#000810"
     tools:context=".Activitys.ProfileActivity">
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp">
+        android:orientation="vertical"
+        android:layout_centerInParent="true">
 
-        <ImageView
-            android:id="@+id/ImvPfp"
-            android:layout_width="160dp"
-            android:layout_height="160dp"
-            android:background="@drawable/circular_bg"
-            android:backgroundTint="#CDDC39"
-            android:scaleType="centerCrop"
-            android:src="@drawable/person_icon" />
+    <ImageView
+        android:id="@+id/ImvPfp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="centerCrop"
+        android:clipToOutline="true"
+        android:src="@drawable/profile2"
+        android:background="@drawable/circular_bg"
+        android:backgroundTint="#CDDC39"
+        android:layout_gravity="center"
+         />
 
-    </RelativeLayout>
 
     <EditText
         android:id="@+id/EtContactName"
@@ -42,42 +46,30 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:background="@drawable/edit_text_rounded"
-        android:elevation="5dp"
-        android:enabled="false"
         android:padding="10dp"
-        android:text="Phone"
+        android:text="+507 8786-1234"
+        android:textColor="@color/white"
+        android:textAlignment="center"
         android:textSize="18dp" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="111dp"
-        android:layout_margin="20dp"
-        android:gravity="center_vertical"
-        android:orientation="vertical">
 
         <Button
             android:id="@+id/btnSaveChanges"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/btn_rounded_corner"
+            android:backgroundTint="#9F9F9F"
             android:text="Guardar Cambios" />
 
-    </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="111dp"
-        android:layout_margin="20dp"
-        android:gravity="center_vertical"
-        android:orientation="vertical">
-        
         <Switch
             android:id="@+id/swChangeUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:minWidth="48dp"
             android:minHeight="48dp"
+            android:text="Cambiar Usuario"
+            android:textColor="@color/white"
             tools:ignore="UseSwitchCompatOrMaterialXml"/>
-    </LinearLayout>
+
 </LinearLayout>
+</RelativeLayout>
