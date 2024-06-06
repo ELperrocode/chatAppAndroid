@@ -4,18 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activitys.MainActivity">
+    tools:context=".Activitys.MainActivity"
+    android:background="#FF000810">>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#f44336"
+        android:background="#FFFFFF"
         android:padding="10dp"
         android:id="@+id/main_toolbar">
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/person_icon"
+            android:src="@drawable/profile1"
+            android:background="@drawable/circular_bg"
+            android:scaleType="centerCrop"
+            android:clipToOutline="true"
             android:layout_marginStart="10dp"
             android:layout_centerVertical="true"
             android:id="@+id/MainPfp" />
@@ -28,7 +32,7 @@
             android:id="@+id/TvCurrUser"
             android:textSize="22sp"
             android:textStyle="bold"
-            android:textColor="@android:color/white"
+            android:textColor="@color/black"
             android:layout_marginStart="10dp"
             android:layout_centerVertical="true" />
 
@@ -45,6 +49,7 @@
     </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:background="#@drawable/top_radious"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/ChatsRecyclerView"
