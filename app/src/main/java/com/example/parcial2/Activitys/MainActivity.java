@@ -3,14 +3,12 @@ package com.example.parcial2.Activitys;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -27,11 +25,8 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.time.Instant;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -43,8 +38,8 @@ public class MainActivity extends AppCompatActivity {
     ImageView MainPfp;
     TextView CUName;
     String currentUserId;
-    
-    public void crearfile(){
+
+    public void crearfile() {
         File file = new File(getFilesDir(), "chats.txt");
         if (!file.exists()) {
             try {
@@ -55,38 +50,34 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
+
         crearfile();
         InitializeControls();
-        
-        loadUserProfile();
-        
 
-        // esta vaina hay que arreglarla
+        loadUserProfile();
+
         FileToList();
 
         addChatBtn.setOnClickListener(v -> goContacts());
         goProfileBtn.setOnClickListener(v -> goProfile());
     }
-    
-    void InitializeControls(){
-        
+
+    void InitializeControls() {
         MainPfp = findViewById(R.id.MainPfp);
         CUName = findViewById(R.id.TvCurrUser);
         addChatBtn = findViewById(R.id.addChatBtn);
         goProfileBtn = findViewById(R.id.PfBtn);
-        
+
         recyclerViewChats = findViewById(R.id.ChatsRecyclerView);
         recyclerViewChats.setLayoutManager(new LinearLayoutManager(this));
-        
-        //chatListAdapter = new ChatListAdapter(new ArrayList<>(chatMap.values()), this);
+
+        chatListAdapter = new ChatListAdapter(chatList, this);
         recyclerViewChats.setAdapter(chatListAdapter);
-        
     }
 
     private void goContacts() {
@@ -114,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences preferences = getSharedPreferences("currentUser", MODE_PRIVATE);
         return preferences.getString("currentUserId", null);
     }
+
     private User getUserDetailsById(String userId) {
         SharedPreferences preferences;
         if (userId.equals("1")) {
@@ -135,15 +127,10 @@ public class MainActivity extends AppCompatActivity {
         }
         return null;
     }
-    
-    
-    
-    public void FileToList(){
-        
-    }
 
-   
+    public void FileToList() {}
 }
+
 
 
 
