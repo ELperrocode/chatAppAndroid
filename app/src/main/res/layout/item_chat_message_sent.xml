@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Message"
-        android:backgroundTint="@color/sended_chat"
+        android:backgroundTint="#209A34"
         android:textSize="16sp"
         android:background="@drawable/edit_text_rounded"
         android:padding="8dp"
