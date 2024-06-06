@@ -27,7 +27,7 @@ public class ContactListActivity extends AppCompatActivity {
     }
 
     private void InitializeControls() {
-        listView = findViewById(R.id.ContactsRecyclerView);
+        listView = findViewById(R.id.ContactsListView);
         adapter = new ContactListAdapter(users, this);
         listView.setAdapter(adapter);
     }
@@ -40,5 +40,6 @@ public class ContactListActivity extends AppCompatActivity {
         users.add(new User("Carlos", "66666666", "7", "@drawable/person_icon"));
     }
 }
+
 
 

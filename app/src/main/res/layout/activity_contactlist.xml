@@ -8,10 +8,8 @@
     android:background="#FF000810"
     tools:context=".Activitys.ContactListActivity">
 
-
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/ContactsRecyclerView"
+    <ListView
+        android:id="@+id/ContactsListView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
