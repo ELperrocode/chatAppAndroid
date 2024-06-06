@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         addChatBtn = findViewById(R.id.addChatBtn);
         goProfileBtn = findViewById(R.id.PfBtn);
 
-        listViewChats = findViewById(R.id.ChatsListView);
+        listViewChats = findViewById(R.id.ChatsRecyclerView);
 
     }
 

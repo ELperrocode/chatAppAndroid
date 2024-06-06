@@ -27,7 +27,7 @@ public class ContactListActivity extends AppCompatActivity {
     }
 
     private void InitializeControls() {
-        listView = findViewById(R.id.ContactsListView);
+        listView = findViewById(R.id.ContactsRecyclerView);
         adapter = new ContactListAdapter(users, this);
         listView.setAdapter(adapter);
     }

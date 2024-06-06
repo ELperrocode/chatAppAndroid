@@ -5,9 +5,9 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FF000810"
     tools:context=".Activitys.ContactListActivity">
-    tools:context=".Activitys.ContactListActivity"
-    android:background="#FF000810">
+
 
 
     <androidx.recyclerview.widget.RecyclerView
