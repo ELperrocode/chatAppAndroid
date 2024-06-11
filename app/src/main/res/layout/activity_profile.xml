@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    android:background="#000810"
+    android:background="#000F3E"
     tools:context=".Activitys.ProfileActivity">
 
 
@@ -22,7 +22,6 @@
         android:layout_height="100dp"
         android:scaleType="centerCrop"
         android:clipToOutline="true"
-        android:src="@drawable/profile2"
         android:background="@drawable/circular_bg"
         android:layout_gravity="center"
          />
@@ -56,11 +55,19 @@
             android:id="@+id/btnSaveChanges"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#9F9F9F"
+            android:backgroundTint="#A66767"
             android:text="Guardar Cambios" />
+
+        <Button
+            android:id="@+id/btnpfp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#A66767"
+            android:text="Cambiar foto de perfil" />
 
 
         <Switch
+            android:layout_gravity="center"
             android:id="@+id/swChangeUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

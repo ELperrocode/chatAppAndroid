@@ -2,6 +2,7 @@ package com.example.parcial2.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -56,7 +57,7 @@ public class ContactListAdapter extends BaseAdapter {
 
         tvName.setText(user.getName());
         tvLastMessage.setText(user.getNumber());
-        Glide.with(context).load(user.getPfp()).into(imgvPfp);
+        Glide.with(context).load(Uri.parse(user.getPfp())).into(imgvPfp);
 
         convertView.setOnClickListener(v -> {
             Intent intent = new Intent(context, ChatActivity.class);
@@ -70,7 +71,6 @@ public class ContactListAdapter extends BaseAdapter {
 
         return convertView;
     }
-    
 }
 
 

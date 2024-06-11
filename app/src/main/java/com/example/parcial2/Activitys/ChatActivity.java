@@ -1,8 +1,10 @@
 package com.example.parcial2.Activitys;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -26,11 +28,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ChatActivity extends AppCompatActivity {
-    private RecyclerView recyclerViewChats;
-    private ChatRoomAdapter chatRecyclerAdapter;
-    private EditText chatInput;
-    private String currentUserId, receiverId, receiverName, receiverPfp;
-    private List<Chat> chats = new ArrayList<>();
+     RecyclerView recyclerViewChats;
+     ChatRoomAdapter chatRecyclerAdapter;
+     EditText chatInput;
+     String currentUserId, receiverId, receiverName, receiverPfp;
+     List<Chat> chats = new ArrayList<>();
+     TextView receiverUser;
+     ImageView chatPfp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +45,7 @@ public class ChatActivity extends AppCompatActivity {
         receiverId = bundle.getString("id");
         receiverName = bundle.getString("name");
         receiverPfp = bundle.getString("pfp");
+
         currentUserId = getCurrentUserId();
 
         InitializeControls();
@@ -57,19 +62,18 @@ public class ChatActivity extends AppCompatActivity {
     public void InitializeControls() {
         recyclerViewChats = findViewById(R.id.recyclerViewChats);
         chatInput = findViewById(R.id.chat_input);
-
+        receiverUser = findViewById(R.id.RecieverUser);
+        chatPfp = findViewById(R.id.chatPfp);
         findViewById(R.id.btnSend).setOnClickListener(v -> sendMessage());
         findViewById(R.id.btnBack).setOnClickListener(v -> {sendResult();
         });
     }
 
     private void loadUserProfile() {
-        TextView receiverUser = findViewById(R.id.RecieverUser);
-        ImageView chatPfp = findViewById(R.id.chatPfp);
-
         receiverUser.setText(receiverName);
-        Glide.with(this).load(receiverPfp).into(chatPfp);
+        Glide.with(this).load(Uri.parse(receiverPfp)).into(chatPfp);
     }
+
 
     private void setupRecyclerView() {
         chatRecyclerAdapter = new ChatRoomAdapter(chats, this, currentUserId);
@@ -89,7 +93,7 @@ public class ChatActivity extends AppCompatActivity {
                     )
             );
             String rawData;
-            chats.clear(); // Limpiar la lista de chats antes de cargar los nuevos datos
+            chats.clear();
             while ((rawData = bf.readLine()) != null) {
                 String[] splitData = rawData.split("~");
 
@@ -101,7 +105,6 @@ public class ChatActivity extends AppCompatActivity {
                         String receiverId = fields[2];
                         String timestamp = fields[3];
 
-                        // Filtrar mensajes que pertenecen a la conversación entre currentUser y receiverId
                         if ((senderId.equals("1") && receiverId.equals(this.receiverId)) ||
                                 (senderId.equals("2") && receiverId.equals(receiverId))) {
                             chats.add(new Chat(message, senderId, receiverId, timestamp, receiverPfp));
@@ -141,7 +144,7 @@ public class ChatActivity extends AppCompatActivity {
     }
 
     private String getChatFileName() {
-        return "chat_" + receiverId + ".txt"; // metodo para darle el nombre al nuevo archivo utilizando el id del usuario
+        return "chat_" + receiverId + ".txt";
     }
 
     public void sendResult() {
@@ -155,11 +158,15 @@ public class ChatActivity extends AppCompatActivity {
 
     public String getLastMessage() {
         if (!chats.isEmpty()) {
-            Toast.makeText(this, "Mensaje enviado"+chats.get(chats.size() - 1).getMessage(), Toast.LENGTH_SHORT).show();
+
             return chats.get(chats.size() - 1).getMessage();
 
         }
         return null;
+    }
+    @SuppressLint("MissingSuperCall")
+    public void onBackPressed() {
+
     }
 }
 

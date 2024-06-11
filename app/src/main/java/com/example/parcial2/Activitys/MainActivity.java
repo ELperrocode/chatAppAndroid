@@ -31,8 +31,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     ListView listViewChats;
-    ImageButton addChatBtn;
-    ImageButton goProfileBtn;
+    ImageButton goProfileBtn, addChatBtn;
     ChatListAdapter chatListAdapter;
     List<Chat> chatList = new ArrayList<>();
     ImageView MainPfp;
@@ -60,9 +59,9 @@ public class MainActivity extends AppCompatActivity {
             File file = new File(getFilesDir(), "chats.txt");
             if (!file.exists()) {
                 file.createNewFile();
-                Toast.makeText(this, "Archivo creado", Toast.LENGTH_SHORT).show();
+
             } else {
-                Toast.makeText(this, "El archivo ya existe", Toast.LENGTH_SHORT).show();
+
             }
         } catch (IOException e) {
             Toast.makeText(this, "Error al crear el archivo: " + e.getMessage(), Toast.LENGTH_LONG).show();
@@ -77,13 +76,14 @@ public class MainActivity extends AppCompatActivity {
         lastMessage = intent.getStringExtra("lastMessage");
 
         if (receiverId != null && receiverName != null && receiverPfp != null && lastMessage != null) {
-            Toast.makeText(this, "Receiver ID: " + receiverId + " Receiver Name: " + receiverName + " Receiver Pfp: " + receiverPfp + " Last Message: " + lastMessage, Toast.LENGTH_LONG).show();
+
             saveChat();
         } else {
             Toast.makeText(this, "Datos incompletos recibidos", Toast.LENGTH_LONG).show();
         }
     }
 
+    @SuppressLint("WrongViewCast")
     void InitializeControls() {
         MainPfp = findViewById(R.id.MainPfp);
         CUName = findViewById(R.id.TvCurrUser);
@@ -128,6 +128,7 @@ public class MainActivity extends AppCompatActivity {
                 if (chat.getReceiverID().equals(receiverId)) {
                     chatExists = true;
                     chat.setMessage(lastMessage);
+                    chat.setReceiverPfp(receiverPfp);
                     break;
                 }
             }
@@ -135,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
                 chatList.add(new Chat(receiverId, receiverName, lastMessage, receiverPfp));
             }
             updateChatFile();
-            Toast.makeText(this, "Chat guardado", Toast.LENGTH_SHORT).show();
+
         } catch (Exception e) {
             Toast.makeText(this, "Error al guardar el chat: " + e.getMessage(), Toast.LENGTH_LONG).show();
         }
@@ -183,7 +184,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 chatListAdapter.notifyDataSetChanged();
             } else {
-                Toast.makeText(this, "El archivo está vacío", Toast.LENGTH_LONG).show();
+
             }
 
         } catch (FileNotFoundException e) {
@@ -194,8 +195,17 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Error inesperado: " + e.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
-    @SuppressLint("MissingSuperCall")
+    @Override
     public void onBackPressed() {
-        finish();
+        super.onBackPressed();
+        finishAffinity();
+    }
 }
-}
+
+
+
+
+
+
+
+

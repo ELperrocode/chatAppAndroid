@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- Header Layout -->
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
@@ -32,7 +31,7 @@
             android:background="@drawable/circular_bg"
             android:contentDescription="Profile Picture"
             android:scaleType="centerCrop"
-            android:src="@drawable/person_icon" />
+            />
 
         <TextView
             android:id="@+id/RecieverUser"

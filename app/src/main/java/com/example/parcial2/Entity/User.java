@@ -1,5 +1,7 @@
 package com.example.parcial2.Entity;
 
+import android.net.Uri;
+
 public class User {
     String name;
     String number;
@@ -12,6 +14,13 @@ public class User {
         this.number = number;
         this.id = id;
         this.pfp = pfp;
+    }
+
+    public User(String name, String phoneNumber, String id, Uri imageUri) {
+        this.name = name;
+        this.number = phoneNumber;
+        this.id = id;
+        this.pfp = imageUri.toString();
     }
 
     public String getPfp() {
