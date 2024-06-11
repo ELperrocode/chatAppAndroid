@@ -1,10 +1,10 @@
 package com.example.parcial2.Activitys;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -21,7 +21,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -32,13 +31,13 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     ListView listViewChats;
-    FloatingActionButton addChatBtn;
+    ImageButton addChatBtn;
     ImageButton goProfileBtn;
     ChatListAdapter chatListAdapter;
     List<Chat> chatList = new ArrayList<>();
     ImageView MainPfp;
     TextView CUName, noChatsTextView;
-    String receiverId, receiverName, receiverPfp, lastMessage;
+    String  receiverId, receiverName, receiverPfp, lastMessage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,20 +47,12 @@ public class MainActivity extends AppCompatActivity {
         InitializeControls();
         loadUserProfile();
         crearFile();
-        FileToList(); 
+        FileToList();
         loadChats();
 
         addChatBtn.setOnClickListener(v -> goContacts());
         goProfileBtn.setOnClickListener(v -> goProfile());
 
-        listViewChats.setOnItemClickListener((parent, view, position, id) -> {
-            Chat chat = chatList.get(position);
-            Intent chatIntent = new Intent(MainActivity.this, ChatActivity.class);
-            chatIntent.putExtra("receiverId", chat.getReceiverID());
-            chatIntent.putExtra("receiverName", chat.getReceiverName());
-            chatIntent.putExtra("receiverPfp", chat.getReceiverPfp());
-            startActivity(chatIntent);
-        });
     }
 
     public void crearFile(){
@@ -203,12 +194,8 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Error inesperado: " + e.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
+    @SuppressLint("MissingSuperCall")
+    public void onBackPressed() {
+        finish();
 }
-
-
-
-
-
-
-
-
+}

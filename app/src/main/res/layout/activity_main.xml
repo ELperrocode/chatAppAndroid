@@ -9,15 +9,16 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#f44336"
+        android:background="#00135A"
         android:padding="10dp"
         android:id="@+id/main_toolbar">
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/person_icon"
-            android:layout_marginStart="10dp"
-            android:layout_centerVertical="true"
+            android:background="@drawable/circular_bg"
+            android:src="@drawable/profile1"
+            android:scaleType="centerCrop"
+            android:clipToOutline="true"
             android:id="@+id/MainPfp" />
 
         <TextView
@@ -34,18 +35,19 @@
 
         <ImageButton
             android:id="@+id/PfBtn"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:layout_marginEnd="10dp"
+            android:scaleType="centerCrop"
+
             android:background="@android:color/transparent"
-            android:src="@drawable/icon_send"
-            tools:ignore="SpeakableTextPresentCheck" />
+            android:src="@drawable/options" />
     </RelativeLayout>
 
     <ListView
         android:id="@+id/ChatsListView"
+        android:background="@drawable/edit_text_rounded"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/main_toolbar" />
@@ -60,16 +62,16 @@
         android:textSize="18sp"
         android:layout_centerInParent="true"/>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <ImageButton
         android:id="@+id/addChatBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_margin="16dp"
         android:clickable="true"
-        android:contentDescription="add_chat"
-        app:srcCompat="@android:drawable/ic_input_add"/>
+        android:background="@drawable/plus"
+        android:contentDescription="add_chat"/>
 
 </RelativeLayout>
 

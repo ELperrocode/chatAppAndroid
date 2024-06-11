@@ -7,7 +7,7 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/edit_text_rounded"
+        android:background="@drawable/edit_text_rounded_profile"
         android:backgroundTint="#000810"
         android:padding="8dp"
         android:layout_marginEnd="80dp"
@@ -25,7 +25,7 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/edit_text_rounded"
+        android:background="@drawable/edit_text_rounded_profile"
         android:backgroundTint="@color/sended_chat"
         android:layout_alignParentEnd="true"
         android:padding="8dp"

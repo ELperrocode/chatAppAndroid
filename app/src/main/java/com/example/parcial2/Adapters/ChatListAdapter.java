@@ -2,6 +2,7 @@ package com.example.parcial2.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,9 +48,11 @@ public class ChatListAdapter extends ArrayAdapter<Chat> {
 
         convertView.setOnClickListener(v -> {
             Intent intent = new Intent(context, ChatActivity.class);
-            intent.putExtra("receiverId", chat.getReceiverID());
-            intent.putExtra("receiverName", chat.getReceiverName());
-            intent.putExtra("receiverPfp", chat.getReceiverPfp());
+            Bundle bundle = new Bundle();
+            bundle.putString("id", chat.getReceiverID());
+            bundle.putString("name", chat.getReceiverName());
+            bundle.putString("pfp", chat.getReceiverPfp());
+            intent.putExtras(bundle);
             context.startActivity(intent);
         });
 
@@ -60,9 +63,3 @@ public class ChatListAdapter extends ArrayAdapter<Chat> {
         notifyDataSetChanged();
     }
 }
-
-
-
-
-
-

@@ -14,7 +14,7 @@
         android:textSize="16sp"
         android:backgroundTint="#000810"
         android:textColor="#FFFFFF"
-        android:background="@drawable/edit_text_rounded"
+        android:background="@drawable/edit_text_rounded_profile"
         android:padding="8dp"
         android:layout_marginTop="4dp" />
 
