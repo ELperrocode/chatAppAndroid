@@ -83,7 +83,6 @@ public class ChatActivity extends AppCompatActivity {
             if (!chatFile.exists()) {
                 chatFile.createNewFile();
             }
-
             BufferedReader bf = new BufferedReader(
                     new InputStreamReader(
                             openFileInput(getChatFileName())
@@ -134,7 +133,7 @@ public class ChatActivity extends AppCompatActivity {
             String timestamp = String.valueOf(System.currentTimeMillis());
             saveMessageToFile(message, currentUserId, receiverId, timestamp);
             chatInput.setText("");
-            // Actualizar la RecyclerView con el nuevo mensaje
+
             chats.add(new Chat(message, currentUserId, receiverId, timestamp, receiverPfp));
             chatRecyclerAdapter.notifyDataSetChanged();
             recyclerViewChats.scrollToPosition(chatRecyclerAdapter.getItemCount() - 1);
@@ -142,7 +141,7 @@ public class ChatActivity extends AppCompatActivity {
     }
 
     private String getChatFileName() {
-        return "chat_" + receiverId + ".txt"; // Archivo predefinido para la conversación con el usuario quemado
+        return "chat_" + receiverId + ".txt"; // metodo para darle el nombre al nuevo archivo utilizando el id del usuario
     }
 
     public void sendResult() {
@@ -156,9 +155,11 @@ public class ChatActivity extends AppCompatActivity {
 
     public String getLastMessage() {
         if (!chats.isEmpty()) {
+            Toast.makeText(this, "Mensaje enviado"+chats.get(chats.size() - 1).getMessage(), Toast.LENGTH_SHORT).show();
             return chats.get(chats.size() - 1).getMessage();
+
         }
-        return "";
+        return null;
     }
 }
 

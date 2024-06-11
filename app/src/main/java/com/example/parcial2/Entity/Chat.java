@@ -1,28 +1,22 @@
 package com.example.parcial2.Entity;
 
+import java.time.Instant;
+
 public class Chat {
     private String message;
     private String senderID;
     private String receiverID;
-    private String timestamp;
+    private Instant timestamp;
     private String receiverName;
     private String receiverPfp;
 
-    public Chat(String message, String senderID, String receiverID, String timestamp, String receiverName, String receiverPfp) {
-        this.message = message;
-        this.senderID = senderID;
+    public Chat(String receiverID, String receiverName, String message, String receiverPfp) {
         this.receiverID = receiverID;
-        this.timestamp = timestamp;
         this.receiverName = receiverName;
+        this.message = message;
         this.receiverPfp = receiverPfp;
     }
 
-    public Chat(String message, String senderID, String receiverID, String timestamp) {
-        this.message = message;
-        this.senderID = senderID;
-        this.receiverID = receiverID;
-        this.timestamp = timestamp;
-    }
 
     public Chat(String lastMessage, String currentUserId, String receiverId, String receiverName, String receiverPfp) {
         this.message = lastMessage;
@@ -56,13 +50,10 @@ public class Chat {
         this.receiverID = receiverID;
     }
 
-    public String getTimestamp() {
+    public Instant getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(String timestamp) {
-        this.timestamp = timestamp;
-    }
 
     public String getReceiverName() {
         return receiverName;

@@ -44,11 +44,21 @@
             tools:ignore="SpeakableTextPresentCheck" />
     </RelativeLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
+    <ListView
+        android:id="@+id/ChatsListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/ChatsRecyclerView"
         android:layout_below="@id/main_toolbar" />
+
+    <TextView
+        android:id="@+id/noChatsTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No hay chats"
+        android:visibility="gone"
+        android:gravity="center_horizontal"
+        android:textSize="18sp"
+        android:layout_centerInParent="true"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addChatBtn"
@@ -62,4 +72,6 @@
         app:srcCompat="@android:drawable/ic_input_add"/>
 
 </RelativeLayout>
+
+
 

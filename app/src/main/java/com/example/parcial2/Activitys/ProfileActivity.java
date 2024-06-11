@@ -1,6 +1,7 @@
 package com.example.parcial2.Activitys;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
@@ -25,6 +26,7 @@ public class ProfileActivity extends AppCompatActivity {
     Switch switchUser;
     User currentUser, user1, user2;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +47,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     private void loadProfile() {
         if (currentUser == null) {
-            currentUser = user1; // Asignar user1 como valor predeterminado si currentUser es nulo
+            currentUser = user1; // Asignar user1 como  predeterminado si currentUser es nulo
         }
         PfName.setText(currentUser.getName());
         PfPhone.setText(currentUser.getNumber());
@@ -114,6 +116,12 @@ public class ProfileActivity extends AppCompatActivity {
     public void addBurnContacts() {
         user1 = new User("El yeyo", "68234800", "1", "person_icon");
         user2 = new User("Jhon Doe", "67845321", "2", "person_icon");
+    }
+    @SuppressLint("MissingSuperCall")
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(ProfileActivity.this, MainActivity.class);
+        startActivity(intent);
     }
 }
 

@@ -1,5 +1,7 @@
 package com.example.parcial2.Activitys;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ListView;
 
@@ -38,6 +40,12 @@ public class ContactListActivity extends AppCompatActivity {
         users.add(new User("Lucia", "64440000", "5", "@drawable/person_icon"));
         users.add(new User("Jose", "9999999999", "6", "@drawable/person_icon"));
         users.add(new User("Carlos", "66666666", "7", "@drawable/person_icon"));
+    }
+    @SuppressLint("MissingSuperCall")
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(ContactListActivity.this, MainActivity.class);
+        startActivity(intent);
     }
 }
 
