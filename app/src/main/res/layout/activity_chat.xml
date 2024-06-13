@@ -2,37 +2,49 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#010C15">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/linearLayout"
+    android:layout_margin="5dp"
+    android:background="@drawable/edit_text_rounded_profile"
+    android:backgroundTint="@color/black">
     <LinearLayout
-        android:id="@+id/linearLayout"
+        android:layout_margin="1dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#00135A"
+        android:background="@drawable/edit_text_rounded_profile"
+        android:backgroundTint="@color/bg"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:padding="8dp">
+        android:padding="10dp"
+        android:elevation="8dp">
 
         <ImageButton
             android:id="@+id/btnBack"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginEnd="8dp"
-            android:contentDescription="Back"
-            android:padding="8dp"
-            android:src="@drawable/icon_back"
-            tools:ignore="HardcodedText,TouchTargetSizeCheck" />
-
-        <ImageView
-            android:id="@+id/chatPfp"
             android:layout_width="40dp"
             android:layout_height="40dp"
+            android:layout_marginEnd="18dp"
+            android:contentDescription="Back"
+            android:backgroundTint="@color/LightBlue"
+            android:background="@drawable/icon_back"
+            tools:ignore="HardcodedText,TouchTargetSizeCheck" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/chatPfp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginEnd="8dp"
-            android:background="@drawable/circular_bg"
+            android:src="@drawable/person_icon"
             android:contentDescription="Profile Picture"
+            app:civ_border_width="2dp"
+            app:civ_border_color="@color/LightBlue"
+            app:civ_circle_background_color="@color/LightBlue"
             android:scaleType="centerCrop"
             />
-
         <TextView
             android:id="@+id/RecieverUser"
             android:layout_width="wrap_content"
@@ -43,6 +55,7 @@
             android:textSize="18sp" />
     </LinearLayout>
 
+</LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewChats"
@@ -50,10 +63,9 @@
         android:layout_height="611dp"
         android:layout_above="@+id/linearLayout2"
         android:layout_below="@+id/linearLayout"
-        android:layout_marginTop="0dp"
-        android:layout_marginBottom="0dp"
+        android:layout_marginTop="-1dp"
+        android:layout_marginBottom="1dp"
         android:padding="8dp"
-        android:backgroundTint="@android:color/white"
         tools:ignore="NotSibling" />
 
     <LinearLayout
@@ -69,17 +81,22 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textColor="@android:color/white"
+            android:textColorHint="@android:color/white"
             android:background="@drawable/edit_text_rounded_profile"
-            android:hint="Type a message"
+            android:backgroundTint="@color/DarkBlue"
+            android:hint="Escribe manin..."
             android:minHeight="48dp"
             android:padding="8dp" />
 
-        <Button
+        <ImageButton
             android:id="@+id/btnSend"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:layout_marginStart="8dp"
-            android:text="Send" />
+            android:background="@drawable/icon_send"
+            android:backgroundTint="@color/DarkBlue"
+            tools:ignore="SpeakableTextPresentCheck" />
     </LinearLayout>
 </RelativeLayout>
 

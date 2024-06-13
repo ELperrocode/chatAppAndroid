@@ -3,30 +3,34 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/edit_text_rounded_profile"
-    android:layout_margin="10dp"
-    android:elevation="2dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/transparent_background"
+    android:layout_margin="15dp"
+    android:elevation="5dp"
     android:id="@+id/contactTemplate"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:backgroundTint="@color/light_grey">
 
-    <ImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:background="@drawable/circular_bg"
-        android:src="@drawable/profile1"
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imgv_pfp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_margin="8dp"
+        android:src="@drawable/person_icon"
+        android:contentDescription="Profile Picture"
+        app:civ_border_width="2dp"
+        app:civ_border_color="@color/LightBlue"
+        app:civ_circle_background_color="@color/LightBlue"
         android:scaleType="centerCrop"
-        android:clipToOutline="true"
-        android:padding="4dp"
-        android:paddingTop="4dp"
-        android:backgroundTint="#FFEB3B"
-        android:layout_centerInParent="true"
-        android:id="@+id/imgv_pfp" />
+    />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:padding="12dp">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -36,21 +40,25 @@
                 tools:text="User name"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:id="@+id/tvName"/>
+                android:id="@+id/tvName"
+                android:textColor="@color/white"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="10:00"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="10dp"
-                android:id="@+id/tvTime"/>
+                android:id="@+id/tvTime"
+                android:textColor="@color/white"/>
         </RelativeLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="+000000000000"
-            android:id="@+id/tvLastMessage"/>
+            tools:text="Hola"
+            android:textSize="14sp"
+            android:id="@+id/tvLastMessage"
+            android:textColor="@color/white"/>
     </LinearLayout>
 </LinearLayout>
 

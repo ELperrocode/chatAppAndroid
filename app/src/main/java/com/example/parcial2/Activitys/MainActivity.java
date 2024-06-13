@@ -78,8 +78,6 @@ public class MainActivity extends AppCompatActivity {
         if (receiverId != null && receiverName != null && receiverPfp != null && lastMessage != null) {
 
             saveChat();
-        } else {
-            Toast.makeText(this, "Datos incompletos recibidos", Toast.LENGTH_LONG).show();
         }
     }
 

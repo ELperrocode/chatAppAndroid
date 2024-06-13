@@ -4,50 +4,89 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#131A1C"
     tools:context=".Activitys.MainActivity">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#00135A"
-        android:padding="10dp"
-        android:id="@+id/main_toolbar">
+        android:background="@color/black"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/circular_bg"
-            android:src="@drawable/profile1"
+            android:id="@+id/logo"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/img_3"
+            android:contentDescription="Profile Picture"
+            app:tint="@color/LightBlue"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_marginStart="10dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="elPerroChat"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="12dp" />
+
+        <ImageButton
+            android:id="@+id/PfBtn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="end"
+            android:background="@android:color/transparent"
             android:scaleType="centerCrop"
-            android:clipToOutline="true"
-            android:id="@+id/MainPfp" />
+            app:tint="@color/LightBlue"
+            android:src="@drawable/img_5"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#131A1C"
+        android:padding="1dp"
+        android:id="@+id/main_toolbar">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/MainPfp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_toStartOf="@+id/TvCurrUser"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/profile1"
+            android:contentDescription="Profile Picture"
+            app:civ_border_width="2dp"
+            app:civ_border_color="@color/DarkGray"
+            app:civ_circle_background_color="@color/LightBlue"
+            android:scaleType="centerCrop" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nombre"
-            android:layout_toEndOf="@id/MainPfp"
             android:id="@+id/TvCurrUser"
             android:textSize="22sp"
             android:textStyle="bold"
             android:textColor="@android:color/white"
-            android:layout_marginStart="10dp"
+            android:layout_centerHorizontal="true"
             android:layout_centerVertical="true" />
-
-        <ImageButton
-            android:id="@+id/PfBtn"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:scaleType="centerCrop"
-
-            android:background="@android:color/transparent"
-            android:src="@drawable/options" />
     </RelativeLayout>
 
     <ListView
         android:id="@+id/ChatsListView"
         android:background="@drawable/edit_text_rounded"
+        android:backgroundTint="@color/bg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/main_toolbar" />
@@ -60,20 +99,22 @@
         android:visibility="gone"
         android:gravity="center_horizontal"
         android:textSize="18sp"
-        android:layout_centerInParent="true"/>
+        android:layout_centerInParent="true" />
 
     <ImageButton
         android:id="@+id/addChatBtn"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_margin="16dp"
         android:clickable="true"
+        android:backgroundTint="@color/LightBlue"
         android:background="@drawable/plus"
-        android:contentDescription="add_chat"/>
-
+        android:contentDescription="add_chat" />
 </RelativeLayout>
+
+
 
 
 

@@ -3,6 +3,12 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="red">#FFFF0000</color>"
-    <color name= "sended_chat">#239536</color>
-    <color name= "received_chat">#FF0000FF</color>
+    <color name= "sended_chat">#68AFE8</color>
+    <color name= "received_chat">#EA734D</color>
+    <color name= "DarkBlue">#273235</color>
+    <color name= "DarkGray">#222626</color>
+    <color name= "FrostBlue">#0F3740</color>
+    <color name= "LightBlue">#92BAC3</color>
+    <color name= "light_grey">#6E8784</color>
+    <color name= "bg">#000F13</color>
 </resources>

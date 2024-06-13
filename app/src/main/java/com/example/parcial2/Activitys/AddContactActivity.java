@@ -2,12 +2,11 @@ package com.example.parcial2.Activitys;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -31,12 +30,13 @@ public class AddContactActivity extends AppCompatActivity {
 
     static final int PICK_IMAGE_REQUEST = 1;
 
-    private EditText etName, etPhoneNumber;
-    private ImageView ivProfileImage;
-    private Button btnSelectImage, btnSaveContact;
-    private Uri imageUri;
+     EditText etName, etPhoneNumber;
+     ImageView ivProfileImage;
+     Button  btnSaveContact;
+    ImageButton btnSelectImage, BtnReturn;
+     Uri imageUri;
 
-    private List<User> users = new ArrayList<>();
+     List<User> users = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +46,11 @@ public class AddContactActivity extends AppCompatActivity {
         FileToList();
 
         btnSelectImage.setOnClickListener(v -> openImageSelector());
+        BtnReturn.setOnClickListener(v -> {
+            Intent intent = new Intent(this, ContactListActivity.class);
+            startActivity(intent);
+            finish();
+        });
         btnSaveContact.setOnClickListener(v -> {
             try {
                 saveContact();
@@ -60,6 +65,7 @@ public class AddContactActivity extends AppCompatActivity {
         etPhoneNumber = findViewById(R.id.etPhoneNumber);
         ivProfileImage = findViewById(R.id.ivProfileImage);
         btnSelectImage = findViewById(R.id.btnSelectImage);
+        BtnReturn = findViewById(R.id.btnReturn);
         btnSaveContact = findViewById(R.id.btnSaveContact);
     }
 
@@ -85,9 +91,9 @@ public class AddContactActivity extends AppCompatActivity {
     private void saveContact() throws IOException {
         int idNuevo = users.size() + 3;
         String name = etName.getText().toString().trim();
-        String phoneNumber = etPhoneNumber.getText().toString().trim();
+        String phoneNumber = "+507 " + etPhoneNumber.getText().toString().trim();
 
-        if (name.isEmpty() || phoneNumber.isEmpty()) {
+        if (name.isEmpty() || etPhoneNumber.getText().toString().isEmpty()) {
             Toast.makeText(this, "Por favor, complete todos los campos", Toast.LENGTH_SHORT).show();
             return;
         }

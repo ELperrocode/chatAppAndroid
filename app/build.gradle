@@ -40,4 +40,5 @@ dependencies {
     androidTestImplementation libs.espresso.core
     implementation libs.glide.v4120
     annotationProcessor libs.compiler
+    implementation libs.circleimageview
 }

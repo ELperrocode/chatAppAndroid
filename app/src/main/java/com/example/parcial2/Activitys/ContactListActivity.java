@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -26,9 +27,9 @@ import java.util.List;
 
 public class ContactListActivity extends AppCompatActivity {
     List<User> users = new ArrayList<>();
-    FloatingActionButton addContactBtn;
-    private ListView listView;
-    private ContactListAdapter adapter;
+    ImageButton addContactBtn,BtnReturn;
+     ListView listView;
+     ContactListAdapter adapter;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -38,14 +39,22 @@ public class ContactListActivity extends AppCompatActivity {
         FileToList();
         InitializeControls();
 
-        addContactBtn = findViewById(R.id.addContactButton);
+
         addContactBtn.setOnClickListener(v -> addContact());
+        BtnReturn.setOnClickListener(v -> {
+            Intent intent = new Intent(ContactListActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        });
     }
 
     private void InitializeControls() {
         listView = findViewById(R.id.ContactsListView);
         adapter = new ContactListAdapter(users, this);
         listView.setAdapter(adapter);
+        addContactBtn = findViewById(R.id.addContactButton);
+        BtnReturn = findViewById(R.id.btnReturn);
+
     }
 
     public void FileToList() {
